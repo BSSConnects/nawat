@@ -1,0 +1,7 @@
+& "$env:WINDIR\System32\wsl.exe" -u root -- bash -lc "cd /mnt/d/Projects/Nawat/nawat/cli && ./build_deb.sh"
+
+
+
+cd /mnt/d/Projects/Nawat/nawat
+sudo apt install ./nawat-cli_0.1.0-1_amd64.deb
+nawat create model --name Customer
