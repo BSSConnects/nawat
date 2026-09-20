@@ -1,0 +1,40 @@
+# Paths map to the sub-teams in docs/collaboration.md.
+# Replace the placeholder handles with real GitHub teams once the organisation exists.
+#
+# The LAST matching pattern wins, so order matters: general first, specific last.
+# GitHub reads this file from the branch being merged INTO (main), so nobody can edit it
+# in their own branch to make themselves an owner.
+
+*                          @bssconnects/platform-core
+
+# ---- the contracts. Two approvals and an ADR. -------------------------------
+/schemas/                  @bssconnects/architects
+/operator/api/             @bssconnects/architects @bssconnects/platform-core
+/docs/adr/                 @bssconnects/architects
+
+# ---- control plane ----------------------------------------------------------
+/operator/                 @bssconnects/platform-core
+/services/platform-api/    @bssconnects/platform-core
+/deploy/charts/            @bssconnects/platform-core
+
+# ---- security. An error in Rego is a data breach, not a cosmetic bug. --------
+/services/authz-service/   @bssconnects/security
+/services/license-service/ @bssconnects/security
+/deploy/policies/          @bssconnects/security
+/sdk/authz/                @bssconnects/security
+/sdk/license/              @bssconnects/security
+
+# ---- developer experience ---------------------------------------------------
+/cli/                      @bssconnects/devex
+/sdk/                      @bssconnects/devex @bssconnects/architects
+/examples/                 @bssconnects/devex
+/test/conformance/         @bssconnects/devex
+
+# ---- frontend ---------------------------------------------------------------
+/web/                      @bssconnects/frontend
+/services/shell-service/   @bssconnects/frontend
+
+# ---- CI, tooling, local development ----------------------------------------
+/.github/                  @bssconnects/sre
+/hack/                     @bssconnects/sre
+/test/e2e/                 @bssconnects/sre

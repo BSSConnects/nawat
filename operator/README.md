@@ -1,8 +1,56 @@
-# nawat
-// TODO(user): Add simple overview of use/purpose
+# nawat operator
 
-## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+Turns licences and configuration into running modules. Built with **kubebuilder**; the
+platform's real API lives in its CRDs.
+
+## What it does
+
+1. Watches `License`; asks the License Service to verify it; maintains the module catalogue.
+2. Fetches and validates each module's `__metadata__` **once**, and publishes it to the registry.
+3. Validates `ModuleInstance.spec.config` against the module's `values.schema.json` in an
+   admission webhook, so the customer gets a precise error at submit time.
+4. Provisions the capabilities a module declares: a CloudNativePG `Database`, a Strimzi
+   `KafkaTopic`, a Keycloak client.
+5. Emits **Flux** `OCIRepository` + `HelmRelease`, plus `HTTPRoute`, `AuthorizationPolicy`
+   and `ServiceMonitor`.
+6. Aggregates status back onto `ModuleInstance`, which is what the UI and CLI read.
+
+## What it does NOT do
+
+**It does not implement Helm.** No `helm install` from Go, no release history, no rollback
+logic. Flux already solves install, upgrade, rollback, drift and retry; reimplementing that
+on the Helm SDK is months of work plus permanent maintenance.
+
+We also do **not fork Flux**. We import its API types and create its objects — see
+[../docs/opensource-stack.md](../docs/opensource-stack.md).
+
+**The division of labour:** this operator decides *what should exist* (licence → entitlement
+→ version → values). Flux decides *how it gets applied*.
+
+## Layout
+
+| Path | |
+|---|---|
+| [`api/`](api/) | CRD types, multigroup: `platform`, `licensing`, `iam` |
+| `internal/controller/<group>/` | the reconcilers |
+| [`cmd/`](cmd/) | `main.go` — the manager; every controller runs in this one process |
+| `config/` | kustomize: CRDs, RBAC, manager, webhooks. `config/rbac/role.yaml` is **generated** |
+| `test/` | envtest suites and the e2e scaffold |
+
+## Daily loop
+
+```sh
+kubectl config current-context     # ALWAYS check — make install applies to the current cluster
+make manifests generate            # after editing any +kubebuilder marker, then READ the YAML diff
+make install                       # apply CRDs
+make run                           # run the manager locally against your kubeconfig
+```
+
+`make run` uses **your** credentials, usually cluster-admin — so a missing `+kubebuilder:rbac`
+marker goes unnoticed until the first `make deploy`, when the operator runs as its own
+ServiceAccount. From the webhook stage onward, test deployed.
+
+---
 
 ## Getting Started
 
