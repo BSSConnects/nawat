@@ -1,0 +1,22 @@
+# Go
+bin/
+dist/
+*.test
+cover.out
+
+# Node
+node_modules/
+web/*/dist/
+web/*/.vite/
+
+# Local development
+.env
+.env.local
+kubeconfig
+*.local.yaml
+tilt_modules/
+
+# Licences and keys must never be committed
+*.lic
+*.pem
+!testdata/**/*.pem

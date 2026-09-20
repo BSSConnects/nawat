@@ -1,0 +1,907 @@
+{
+  "$schema": "https://bssconnects.io/schemas/module-metadata/v1alpha1.json",
+  "apiVersion": "platform.bssconnects.io/v1alpha1",
+  "kind": "ModuleMetadata",
+  "module": {
+    "id": "crm",
+    "displayName": "Customer Relationship Management",
+    "version": "2.3.1",
+    "apiVersion": "v1",
+    "basePath": "/api/crm/v1",
+    "category": "BSS",
+    "icon": "users",
+    "description": "Manage subscribers, their contracts and billing accounts.",
+    "documentationUrl": "https://docs.bssconnects.io/crm/2.3",
+    "openApiUrl": "/api/crm/v1/openapi.json",
+    "metadataRevision": "2.3.1-3",
+    "conventions": {
+      "envelope": "platform.v1",
+      "errorFormat": "rfc7807",
+      "pagination": "page-size",
+      "filterSyntax": "platform.filter.v1"
+    },
+    "requiresLicenseFeatures": [
+      "contracts"
+    ]
+  },
+  "permissions": [
+    {
+      "id": "crm:subscriber:read",
+      "displayName": "View subscribers",
+      "description": "Read and list subscriber records.",
+      "implies": []
+    },
+    {
+      "id": "crm:subscriber:write",
+      "displayName": "Edit subscribers",
+      "description": "Create and update subscriber records.",
+      "implies": [
+        "crm:subscriber:read"
+      ]
+    },
+    {
+      "id": "crm:subscriber:delete",
+      "displayName": "Delete subscribers",
+      "description": "Permanently remove subscriber records.",
+      "implies": [
+        "crm:subscriber:read"
+      ]
+    },
+    {
+      "id": "crm:subscriber:suspend",
+      "displayName": "Suspend subscribers",
+      "description": "Suspend or reactivate a subscriber line.",
+      "implies": [
+        "crm:subscriber:read"
+      ]
+    },
+    {
+      "id": "crm:subscriber:export",
+      "displayName": "Export subscribers",
+      "description": "Bulk export subscriber data.",
+      "implies": [
+        "crm:subscriber:read"
+      ]
+    },
+    {
+      "id": "crm:subscriber:pii",
+      "displayName": "View subscriber PII",
+      "description": "See IMSI, national ID and other restricted fields.",
+      "implies": [
+        "crm:subscriber:read"
+      ]
+    },
+    {
+      "id": "crm:contract:read",
+      "displayName": "View contracts",
+      "description": "Read and list contracts.",
+      "implies": []
+    },
+    {
+      "id": "crm:contract:write",
+      "displayName": "Edit contracts",
+      "description": "Create and amend contracts.",
+      "implies": [
+        "crm:contract:read"
+      ]
+    },
+    {
+      "id": "crm:contract:terminate",
+      "displayName": "Terminate contracts",
+      "description": "End an active contract.",
+      "implies": [
+        "crm:contract:read"
+      ]
+    }
+  ],
+  "suggestedRoles": [
+    {
+      "name": "CRMViewer",
+      "displayName": "CRM Viewer",
+      "permissions": [
+        "crm:subscriber:read",
+        "crm:contract:read"
+      ]
+    },
+    {
+      "name": "CRMAgent",
+      "displayName": "CRM Support Agent",
+      "permissions": [
+        "crm:subscriber:write",
+        "crm:subscriber:suspend",
+        "crm:contract:read"
+      ]
+    },
+    {
+      "name": "CRMAdmin",
+      "displayName": "CRM Administrator",
+      "permissions": [
+        "crm:subscriber:*",
+        "crm:contract:*"
+      ]
+    },
+    {
+      "name": "CRMSelfService",
+      "displayName": "Subscriber Self-Care",
+      "permissions": [
+        "crm:subscriber:read",
+        "crm:contract:read"
+      ],
+      "constrainedTo": "self",
+      "audience": "end-customer"
+    }
+  ],
+  "navigation": [
+    {
+      "id": "crm",
+      "label": "CRM",
+      "icon": "users",
+      "order": 200,
+      "children": [
+        {
+          "id": "crm.subscribers",
+          "label": "Subscribers",
+          "resource": "crm/Subscriber",
+          "requires": "crm:subscriber:read"
+        },
+        {
+          "id": "crm.contracts",
+          "label": "Contracts",
+          "resource": "crm/Contract",
+          "requires": "crm:contract:read"
+        },
+        {
+          "id": "crm.churn",
+          "label": "Churn Analysis",
+          "route": "/crm/churn",
+          "requires": "crm:subscriber:read",
+          "renderer": "microfrontend",
+          "component": {
+            "remote": "crm",
+            "module": "./ChurnDashboard"
+          }
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "type": "crm/Subscriber",
+      "names": {
+        "singular": "Subscriber",
+        "plural": "Subscribers",
+        "collection": "subscribers",
+        "cliAliases": [
+          "sub",
+          "subs"
+        ]
+      },
+      "docs": {
+        "summary": "A person or organisation holding one or more mobile lines.",
+        "description": "Subscribers are the central record in CRM. Every contract, invoice and SIM provisioning request is linked to exactly one subscriber. A subscriber is identified operationally by MSISDN and technically by IMSI.",
+        "url": "https://docs.bssconnects.io/crm/2.3/subscribers",
+        "examples": [
+          {
+            "title": "Find suspended subscribers created this month",
+            "cli": "bssconnectsctl crm subscribers list --filter status=suspended --filter createdAt>=2026-08-01",
+            "http": "GET /api/crm/v1/subscribers?filter[status]=suspended&filter[createdAt][gte]=2026-08-01"
+          },
+          {
+            "title": "Suspend a line",
+            "cli": "bssconnectsctl crm subscribers suspend 4711 --reason fraud-review",
+            "http": "POST /api/crm/v1/subscribers/4711:suspend"
+          }
+        ]
+      },
+      "identity": {
+        "idField": "id",
+        "displayField": "name",
+        "secondaryDisplayField": "msisdn",
+        "alternateKeys": [
+          "msisdn",
+          "imsi"
+        ]
+      },
+      "paths": {
+        "collection": "/subscribers",
+        "item": "/subscribers/{id}"
+      },
+      "capabilities": {
+        "list": true,
+        "get": true,
+        "create": true,
+        "update": true,
+        "patch": true,
+        "delete": true,
+        "bulkDelete": false,
+        "export": [
+          "csv",
+          "json"
+        ],
+        "import": [
+          "csv"
+        ],
+        "watch": true,
+        "audit": true
+      },
+      "permissions": {
+        "list": "crm:subscriber:read",
+        "get": "crm:subscriber:read",
+        "create": "crm:subscriber:write",
+        "update": "crm:subscriber:write",
+        "delete": "crm:subscriber:delete",
+        "export": "crm:subscriber:export"
+      },
+      "authorization": {
+        "tenantField": "tenantId",
+        "ownerField": "ownerUserId",
+        "selfField": "userId",
+        "listFiltering": "partial-eval",
+        "fieldRules": [
+          {
+            "fields": [
+              "imsi",
+              "nationalId",
+              "iccid"
+            ],
+            "requires": "crm:subscriber:pii",
+            "onDeny": "redact"
+          },
+          {
+            "fields": [
+              "creditScore"
+            ],
+            "requires": "crm:subscriber:pii",
+            "onDeny": "omit"
+          }
+        ]
+      },
+      "schema": {
+        "$id": "https://bssconnects.io/schemas/crm/v1/Subscriber.json",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "required": [
+          "msisdn",
+          "name",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "Unique identifier for the subscriber.",
+            "readOnly": true,
+            "x-ui": {
+              "hidden": true
+            },
+            "x-filterable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "title": "Tenant",
+            "readOnly": true,
+            "x-ui": {
+              "hidden": true
+            }
+          },
+          "msisdn": {
+            "type": "string",
+            "title": "MSISDN",
+            "description": "Mobile number in E.164 format.",
+            "pattern": "^\\+[1-9][0-9]{6,14}$",
+            "x-searchable": true,
+            "x-filterable": true,
+            "x-sortable": true,
+            "x-ui": {
+              "widget": "msisdn",
+              "placeholder": "+9627xxxxxxxx"
+            }
+          },
+          "imsi": {
+            "type": "string",
+            "title": "IMSI",
+            "description": "SIM identity. Restricted field.",
+            "pattern": "^[0-9]{14,15}$",
+            "x-sensitive": true,
+            "x-permission": "crm:subscriber:pii",
+            "x-searchable": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Full name",
+            "minLength": 2,
+            "maxLength": 120,
+            "x-searchable": true,
+            "x-sortable": true
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email",
+            "x-searchable": true
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "enum": [
+              "active",
+              "suspended",
+              "terminated"
+            ],
+            "default": "active",
+            "readOnly": true,
+            "x-filterable": true,
+            "x-ui": {
+              "widget": "badge",
+              "enumLabels": {
+                "active": "Active",
+                "suspended": "Suspended",
+                "terminated": "Terminated"
+              },
+              "enumColors": {
+                "active": "success",
+                "suspended": "warning",
+                "terminated": "neutral"
+              }
+            },
+            "x-transitions": "actions"
+          },
+          "segment": {
+            "type": "string",
+            "title": "Segment",
+            "x-filterable": true,
+            "x-ui": {
+              "widget": "select",
+              "optionsFrom": {
+                "resource": "crm/Segment",
+                "valueField": "code",
+                "labelField": "name"
+              }
+            }
+          },
+          "accountManagerId": {
+            "type": "string",
+            "title": "Account manager",
+            "x-ui": {
+              "widget": "reference",
+              "optionsFrom": {
+                "resource": "platform/User",
+                "valueField": "id",
+                "labelField": "displayName"
+              }
+            }
+          },
+          "address": {
+            "type": "object",
+            "title": "Address",
+            "properties": {
+              "street": {
+                "type": "string",
+                "title": "Street"
+              },
+              "city": {
+                "type": "string",
+                "title": "City",
+                "x-filterable": true
+              },
+              "postalCode": {
+                "type": "string",
+                "title": "Postal code"
+              },
+              "country": {
+                "type": "string",
+                "title": "Country",
+                "x-ui": {
+                  "widget": "country"
+                }
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "title": "Tags",
+            "items": {
+              "type": "string"
+            },
+            "x-ui": {
+              "widget": "tags"
+            },
+            "x-filterable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created",
+            "readOnly": true,
+            "x-filterable": true,
+            "x-sortable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated",
+            "readOnly": true,
+            "x-sortable": true
+          }
+        }
+      },
+      "list": {
+        "columns": [
+          {
+            "field": "msisdn",
+            "width": 160
+          },
+          {
+            "field": "name"
+          },
+          {
+            "field": "status"
+          },
+          {
+            "field": "segment"
+          },
+          {
+            "field": "createdAt",
+            "width": 180
+          }
+        ],
+        "defaultSort": "-createdAt",
+        "defaultPageSize": 50,
+        "search": {
+          "fields": [
+            "msisdn",
+            "name",
+            "email",
+            "imsi"
+          ],
+          "placeholder": "Search by number, name or email"
+        },
+        "filters": [
+          {
+            "field": "status",
+            "type": "enum",
+            "multiple": true
+          },
+          {
+            "field": "segment",
+            "type": "reference"
+          },
+          {
+            "field": "createdAt",
+            "type": "dateRange"
+          },
+          {
+            "field": "tags",
+            "type": "tags"
+          }
+        ],
+        "savedViews": [
+          {
+            "id": "suspended",
+            "label": "Suspended lines",
+            "filter": {
+              "status": [
+                "suspended"
+              ]
+            }
+          }
+        ],
+        "rowActions": [
+          "suspend",
+          "unsuspend"
+        ],
+        "bulkActions": [
+          "export"
+        ],
+        "cliColumns": [
+          "msisdn",
+          "name",
+          "status"
+        ]
+      },
+      "detail": {
+        "titleTemplate": "{{name}}",
+        "subtitleTemplate": "{{msisdn}}",
+        "statusField": "status",
+        "tabs": [
+          {
+            "id": "profile",
+            "title": "Profile",
+            "renderer": "form",
+            "sections": [
+              {
+                "title": "Identity",
+                "fields": [
+                  "name",
+                  "email",
+                  "msisdn",
+                  "imsi"
+                ],
+                "columns": 2
+              },
+              {
+                "title": "Commercial",
+                "fields": [
+                  "segment",
+                  "accountManagerId",
+                  "tags"
+                ],
+                "columns": 2
+              },
+              {
+                "title": "Address",
+                "fields": [
+                  "address"
+                ],
+                "columns": 1
+              }
+            ]
+          },
+          {
+            "id": "contracts",
+            "title": "Contracts",
+            "renderer": "relation",
+            "relation": "contracts"
+          },
+          {
+            "id": "invoices",
+            "title": "Invoices",
+            "renderer": "relation",
+            "relation": "invoices",
+            "requires": "billing:invoice:read",
+            "hideIfModuleAbsent": "billing"
+          },
+          {
+            "id": "usage",
+            "title": "Usage",
+            "renderer": "microfrontend",
+            "component": {
+              "remote": "crm",
+              "module": "./SubscriberUsage"
+            }
+          },
+          {
+            "id": "audit",
+            "title": "History",
+            "renderer": "audit"
+          }
+        ],
+        "slots": {
+          "header": [],
+          "sidebar": []
+        }
+      },
+      "relations": {
+        "contracts": {
+          "target": "crm/Contract",
+          "cardinality": "many",
+          "path": "/subscribers/{id}/contracts",
+          "foreignField": "subscriberId",
+          "requires": "crm:contract:read",
+          "inlineCreate": true
+        },
+        "invoices": {
+          "target": "billing/Invoice",
+          "cardinality": "many",
+          "module": "billing",
+          "path": "/api/billing/v1/invoices?filter[subscriberId]={id}",
+          "requires": "billing:invoice:read",
+          "optional": true
+        }
+      },
+      "actions": [
+        {
+          "id": "suspend",
+          "label": "Suspend",
+          "description": "Suspend all services for this subscriber.",
+          "method": "POST",
+          "path": "/subscribers/{id}:suspend",
+          "permission": "crm:subscriber:suspend",
+          "scope": "item",
+          "availableWhen": {
+            "field": "status",
+            "in": [
+              "active"
+            ]
+          },
+          "confirm": {
+            "required": true,
+            "title": "Suspend subscriber?",
+            "danger": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "reason"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "title": "Reason",
+                "enum": [
+                  "non-payment",
+                  "fraud-review",
+                  "customer-request"
+                ]
+              },
+              "note": {
+                "type": "string",
+                "title": "Note",
+                "x-ui": {
+                  "widget": "textarea"
+                }
+              }
+            }
+          },
+          "outputSchema": {
+            "$ref": "#/resources/0/schema"
+          },
+          "cli": "bssconnectsctl crm subscribers suspend <id> --reason <reason>"
+        },
+        {
+          "id": "unsuspend",
+          "label": "Reactivate",
+          "method": "POST",
+          "path": "/subscribers/{id}:unsuspend",
+          "permission": "crm:subscriber:suspend",
+          "scope": "item",
+          "availableWhen": {
+            "field": "status",
+            "in": [
+              "suspended"
+            ]
+          },
+          "confirm": {
+            "required": true
+          }
+        },
+        {
+          "id": "export",
+          "label": "Export",
+          "method": "POST",
+          "path": "/subscribers:export",
+          "permission": "crm:subscriber:export",
+          "scope": "collection",
+          "async": {
+            "resultResource": "platform/Job"
+          },
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": [
+                  "csv",
+                  "json"
+                ],
+                "default": "csv"
+              }
+            }
+          }
+        }
+      ],
+      "events": [
+        {
+          "type": "crm.subscriber.suspended.v1",
+          "topic": "crm.subscriber",
+          "description": "Emitted when a subscriber is suspended."
+        },
+        {
+          "type": "crm.subscriber.created.v1",
+          "topic": "crm.subscriber"
+        }
+      ]
+    },
+    {
+      "type": "crm/Contract",
+      "names": {
+        "singular": "Contract",
+        "plural": "Contracts",
+        "collection": "contracts",
+        "cliAliases": [
+          "ctr"
+        ]
+      },
+      "docs": {
+        "summary": "A commercial agreement between a subscriber and the operator."
+      },
+      "identity": {
+        "idField": "id",
+        "displayField": "contractNumber"
+      },
+      "paths": {
+        "collection": "/contracts",
+        "item": "/contracts/{id}"
+      },
+      "capabilities": {
+        "list": true,
+        "get": true,
+        "create": true,
+        "update": true,
+        "delete": false,
+        "export": [
+          "csv"
+        ]
+      },
+      "permissions": {
+        "list": "crm:contract:read",
+        "get": "crm:contract:read",
+        "create": "crm:contract:write",
+        "update": "crm:contract:write"
+      },
+      "authorization": {
+        "tenantField": "tenantId",
+        "listFiltering": "partial-eval"
+      },
+      "schema": {
+        "$id": "https://bssconnects.io/schemas/crm/v1/Contract.json",
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "required": [
+          "subscriberId",
+          "tariffCode",
+          "startDate"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true,
+            "x-ui": {
+              "hidden": true
+            }
+          },
+          "contractNumber": {
+            "type": "string",
+            "title": "Contract no.",
+            "readOnly": true,
+            "x-searchable": true,
+            "x-sortable": true
+          },
+          "subscriberId": {
+            "type": "string",
+            "title": "Subscriber",
+            "x-ui": {
+              "widget": "reference",
+              "optionsFrom": {
+                "resource": "crm/Subscriber",
+                "valueField": "id",
+                "labelField": "name"
+              }
+            }
+          },
+          "tariffCode": {
+            "type": "string",
+            "title": "Tariff",
+            "x-filterable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "title": "Start",
+            "x-sortable": true,
+            "x-filterable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "title": "End",
+            "x-sortable": true
+          },
+          "state": {
+            "type": "string",
+            "title": "State",
+            "enum": [
+              "draft",
+              "active",
+              "terminated"
+            ],
+            "readOnly": true,
+            "x-filterable": true,
+            "x-ui": {
+              "widget": "badge"
+            }
+          }
+        }
+      },
+      "list": {
+        "columns": [
+          {
+            "field": "contractNumber"
+          },
+          {
+            "field": "subscriberId"
+          },
+          {
+            "field": "tariffCode"
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "startDate"
+          }
+        ],
+        "defaultSort": "-startDate",
+        "search": {
+          "fields": [
+            "contractNumber"
+          ]
+        },
+        "filters": [
+          {
+            "field": "state",
+            "type": "enum"
+          },
+          {
+            "field": "startDate",
+            "type": "dateRange"
+          }
+        ]
+      },
+      "detail": {
+        "titleTemplate": "{{contractNumber}}",
+        "statusField": "state",
+        "tabs": [
+          {
+            "id": "terms",
+            "title": "Terms",
+            "renderer": "form",
+            "sections": [
+              {
+                "title": "Contract",
+                "fields": [
+                  "subscriberId",
+                  "tariffCode",
+                  "startDate",
+                  "endDate"
+                ],
+                "columns": 2
+              }
+            ]
+          }
+        ]
+      },
+      "relations": {
+        "subscriber": {
+          "target": "crm/Subscriber",
+          "cardinality": "one",
+          "path": "/contracts/{id}/subscriber",
+          "requires": "crm:subscriber:read"
+        }
+      },
+      "actions": [
+        {
+          "id": "terminate",
+          "label": "Terminate",
+          "method": "POST",
+          "path": "/contracts/{id}:terminate",
+          "permission": "crm:contract:terminate",
+          "scope": "item",
+          "availableWhen": {
+            "field": "state",
+            "in": [
+              "active"
+            ]
+          },
+          "confirm": {
+            "required": true,
+            "danger": true
+          },
+          "inputSchema": {
+            "type": "object",
+            "required": [
+              "effectiveDate"
+            ],
+            "properties": {
+              "effectiveDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Effective date"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
