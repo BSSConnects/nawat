@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+export DH_VIRTUALENV_INSTALL_ROOT=/usr/share/python
+export PYBUILD_NAME=nawat_cli
+
+%:
+	dh $@ --with python-virtualenv
+
+override_dh_virtualenv:
+	dh_virtualenv \
+		--install-suffix nawat-cli \
+		--python /usr/bin/python3 \
+		--requirements requirements.txt \
+		--extra-pip-arg "--no-cache-dir"
+
+override_dh_link:
+	dh_link usr/share/python/nawat-cli/bin/nawat usr/bin/nawat

@@ -1,0 +1,11 @@
+build/
+dist/
+*.egg-info/
+.venv/
+__pycache__/
+*.pyc
+debian/.debhelper/
+debian/nawat-cli/
+debian/files
+debian/*.log
+debian/*.substvars
