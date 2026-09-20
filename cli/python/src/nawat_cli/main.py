@@ -28,7 +28,7 @@ def create() -> None:
 @create.command()
 @click.option("--name", required=True, help="Name of the model to create.")
 def model(name: str) -> None:
-    """Create a model with the given name."""
+    """Create a model with the given name. sdfsdf"""
     click.echo(f"Creating model: {name}")
 
 
