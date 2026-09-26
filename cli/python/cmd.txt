@@ -2,6 +2,12 @@
 
 
 
-cd /mnt/d/Projects/Nawat/nawat
+cd /mnt/d/Projects/Nawat/nawat/cli
 sudo apt install ./nawat-cli_0.1.0-1_amd64.deb
 nawat create model --name Customer
+
+
+k8s pai server token
+
+237878fa7b44d1364a8bc6dea33c9c5c4fd78cb7aceb1093125494c3a0157342
+/root/.kube/cache/oidc-login

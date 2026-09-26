@@ -20,3 +20,4 @@ tilt_modules/
 *.lic
 *.pem
 !testdata/**/*.pem
+cli/cli-requierments.txt

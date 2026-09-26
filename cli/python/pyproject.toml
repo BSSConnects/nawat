@@ -1,6 +1,6 @@
 [project]
 name = "nawat-cli"
-version = "0.1.0"
+version = "0.2.5"
 description = "Nawat command-line interface"
 readme = "README.md"
 requires-python = ">=3.10"
