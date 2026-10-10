@@ -15,6 +15,7 @@ The architecture, decided before implementation started.
 
 | Document | Contents |
 |---|---|
+| [design/HLD.md](design/HLD.md) | high-level architecture, boundaries, runtime flows, and delivery phases |
 | [design/keynote.md](design/keynote.md) | the high-level concept, as presented to management. Best overview of *why* |
 | [design/02-platform-core-components.md](design/02-platform-core-components.md) | every component choice, alternatives considered, and the reasoning |
 | [design/example__metadata__.md](design/example__metadata__.md) | **the module contract specification** — the most important document here |

@@ -1,6 +1,7 @@
-"""Entry point for the nawat CLI."""
+"""Entry point for the BSSConnects CLI."""
 
 import json
+from pathlib import Path
 from urllib.parse import urlsplit
 
 import click
@@ -12,10 +13,26 @@ from nawat_cli.auth import clear_token, load_refresh_token, load_token, save_tok
 DEFAULT_BASE_URL = "https://roaming.bssconnects.io"
 
 
-@click.group()
-@click.version_option(__version__, prog_name="nawat")
+def configured_base_url() -> str:
+    config_path = Path.cwd() / "bssconnectsctl" / "config.json"
+    try:
+        with config_path.open(encoding="utf-8") as config_file:
+            config = json.load(config_file)
+    except FileNotFoundError:
+        return DEFAULT_BASE_URL
+    except (OSError, json.JSONDecodeError) as error:
+        raise click.ClickException(f"Unable to read {config_path}: {error}") from error
+
+    base_url = config.get("base_url") if isinstance(config, dict) else None
+    if not isinstance(base_url, str) or not base_url.strip():
+        raise click.ClickException(f"{config_path} must contain a non-empty 'base_url' string")
+    return base_url
+
+
+@click.group(name="bssconnectsctl")
+@click.version_option(__version__, prog_name="bssconnectsctl")
 def cli() -> None:
-    """Nawat command-line interface."""
+    """BSSConnects command-line interface."""
 
 
 @cli.command()
@@ -27,7 +44,8 @@ def ping(url: str) -> None:
 
 
 @cli.group()
-@click.option("--base-url", default=DEFAULT_BASE_URL, envvar="NAWAT_BASE_URL", show_default=True)
+@click.option("--base-url", default=configured_base_url, envvar="NAWAT_BASE_URL",
+              show_default="from config or https://roaming.bssconnects.io")
 @click.pass_context
 def auth(context: click.Context, base_url: str) -> None:
     """Manage platform authentication."""
@@ -64,7 +82,7 @@ def response_data(response: requests.Response) -> dict:
 
 def required_token(value: str | None, name: str = "access") -> str:
     if not value:
-        raise click.ClickException(f"No {name} token configured; run 'nawat auth login' first")
+        raise click.ClickException(f"No {name} token configured; run 'bssconnectsctl auth login' first")
     return value
 
 
@@ -162,7 +180,8 @@ def status() -> None:
 
 
 @cli.group()
-@click.option("--base-url", default=DEFAULT_BASE_URL, envvar="NAWAT_BASE_URL", show_default=True)
+@click.option("--base-url", default=configured_base_url, envvar="NAWAT_BASE_URL",
+              show_default="from config or https://roaming.bssconnects.io")
 @click.pass_context
 def users(context: click.Context, base_url: str) -> None:
     """Manage platform users."""

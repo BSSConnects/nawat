@@ -24,6 +24,16 @@ class AuthTests(unittest.TestCase):
         self.assertEqual(result.exit_code, 0)
         self.assertIn("No token configured", result.output)
 
+    def test_cli_uses_bssconnectsctl_name(self) -> None:
+        runner = CliRunner()
+        help_result = runner.invoke(cli, ["--help"])
+        version_result = runner.invoke(cli, ["--version"])
+
+        self.assertEqual(help_result.exit_code, 0, help_result.output)
+        self.assertIn("Usage: bssconnectsctl", help_result.output)
+        self.assertEqual(version_result.exit_code, 0, version_result.output)
+        self.assertIn("bssconnectsctl, version ", version_result.output)
+
     def test_save_and_load_token(self) -> None:
         save_token("secret-token")
         self.assertEqual(load_token(), "secret-token")
@@ -76,6 +86,77 @@ class AuthTests(unittest.TestCase):
             )
         self.assertEqual(load_token(), "access-two")
         self.assertEqual(load_refresh_token(), "refresh-one")
+
+    def test_base_url_config_and_fallback(self) -> None:
+        runner = CliRunner()
+        response = Mock()
+        response.json.return_value = {"access_token": "access-one", "refresh_token": "refresh-one"}
+
+        with runner.isolated_filesystem():
+            with patch("nawat_cli.main.requests.request", return_value=response) as request:
+                result = runner.invoke(
+                    cli, ["auth", "login", "--email", "user@example.test"],
+                    input="password-secret\n",
+                )
+            self.assertEqual(result.exit_code, 0, result.output)
+            request.assert_called_once_with(
+                "POST", "https://roaming.bssconnects.io/api/v1/auth/login",
+                json={"email": "user@example.test", "password": "password-secret"},
+                headers=None, timeout=10,
+            )
+
+            config_dir = Path("bssconnectsctl")
+            config_dir.mkdir()
+            (config_dir / "config.json").write_text(
+                '{"base_url": "https://custom.example"}\n', encoding="utf-8"
+            )
+            with patch("nawat_cli.main.requests.request", return_value=response) as request:
+                result = runner.invoke(
+                    cli, ["auth", "login", "--email", "user@example.test"],
+                    input="password-secret\n",
+                )
+            self.assertEqual(result.exit_code, 0, result.output)
+            request.assert_called_once_with(
+                "POST", "https://custom.example/api/v1/auth/login",
+                json={"email": "user@example.test", "password": "password-secret"},
+                headers=None, timeout=10,
+            )
+
+    def test_base_url_environment_overrides_config(self) -> None:
+        runner = CliRunner()
+        response = Mock()
+        response.json.return_value = {"access_token": "access-one", "refresh_token": "refresh-one"}
+
+        with runner.isolated_filesystem():
+            config_dir = Path("bssconnectsctl")
+            config_dir.mkdir()
+            (config_dir / "config.json").write_text(
+                '{"base_url": "https://config.example"}\n', encoding="utf-8"
+            )
+            with patch("nawat_cli.main.requests.request", return_value=response) as request:
+                result = runner.invoke(
+                    cli, ["auth", "login", "--email", "user@example.test"],
+                    input="password-secret\n",
+                    env={"NAWAT_BASE_URL": "https://environment.example"},
+                )
+            self.assertEqual(result.exit_code, 0, result.output)
+            request.assert_called_once_with(
+                "POST", "https://environment.example/api/v1/auth/login",
+                json={"email": "user@example.test", "password": "password-secret"},
+                headers=None, timeout=10,
+            )
+
+    def test_invalid_base_url_config_is_reported(self) -> None:
+        runner = CliRunner()
+        with runner.isolated_filesystem():
+            config_dir = Path("bssconnectsctl")
+            config_dir.mkdir()
+            (config_dir / "config.json").write_text('{"server": "https://example.test"}', encoding="utf-8")
+
+            result = runner.invoke(cli, ["auth", "login", "--email", "user@example.test"])
+
+            self.assertNotEqual(result.exit_code, 0)
+            self.assertIn("must contain a non-empty 'base_url' string", result.output)
 
     def test_profile_and_logout(self) -> None:
         save_token("access-one", "refresh-one")
@@ -165,7 +246,7 @@ class AuthTests(unittest.TestCase):
         with patch("nawat_cli.main.requests.get") as request:
             result = CliRunner().invoke(cli, ["users", "list"])
             self.assertNotEqual(result.exit_code, 0)
-            self.assertIn("nawat auth login", result.output)
+            self.assertIn("bssconnectsctl auth login", result.output)
             request.assert_not_called()
 
         save_token("access-one")

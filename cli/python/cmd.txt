@@ -4,7 +4,7 @@
 
 cd /mnt/d/Projects/Nawat/nawat/cli
 sudo apt install ./nawat-cli_0.1.0-1_amd64.deb
-nawat create model --name Customer
+bssconnectsctl create model --name Customer
 
 
 k8s pai server token

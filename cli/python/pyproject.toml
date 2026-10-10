@@ -1,7 +1,7 @@
 [project]
 name = "nawat-cli"
 version = "0.2.5"
-description = "Nawat command-line interface"
+description = "BSSConnects command-line interface"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -11,7 +11,7 @@ dependencies = [
 ]
 
 [project.scripts]
-nawat = "nawat_cli.main:cli"
+bssconnectsctl = "nawat_cli.main:cli"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]

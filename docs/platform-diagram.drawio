@@ -1,0 +1,97 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="kc2UpIhF4vg7NQ124Vy8">
+    <mxGraphModel dx="1832" dy="1684" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-3" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="345" width="690" x="60" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-2" parent="1" style="whiteSpace=wrap;html=1;" value="keycloak" vertex="1">
+          <mxGeometry height="40" width="80" x="650" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="k8s cluster" vertex="1">
+          <mxGeometry height="30" width="60" x="60" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-6" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=ing" value="customer.bssconnects.io" vertex="1">
+          <mxGeometry height="48" width="50" x="140" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-8" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="300" width="390" x="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Bssconnects Aps" vertex="1">
+          <mxGeometry height="30" width="100" x="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Admin-App" vertex="1">
+          <mxGeometry height="40" width="330" x="250" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="k8s cluster" vertex="1">
+          <mxGeometry height="30" width="60" x="-770" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-15" parent="1" style="whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="180" width="360" x="-810" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-16" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=ing" value="roaming.bssconnects.io" vertex="1">
+          <mxGeometry height="48" width="50" x="-765" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="namespace&lt;div&gt;deployment&lt;/div&gt;&lt;div&gt;- auth&lt;/div&gt;&lt;div&gt;- logic&lt;/div&gt;&lt;div&gt;-* db&lt;/div&gt;&lt;div&gt;- cache&lt;/div&gt;&lt;div&gt;sec &amp;amp; config&lt;/div&gt;&lt;div&gt;services&lt;/div&gt;&lt;div&gt;volumnes&lt;/div&gt;&lt;div&gt;etc&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="90" x="-650" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="namespace&lt;div&gt;deployment&lt;/div&gt;&lt;div&gt;- auth&lt;/div&gt;&lt;div&gt;- logic&lt;/div&gt;&lt;div&gt;-* db&lt;/div&gt;&lt;div&gt;- cache&lt;/div&gt;&lt;div&gt;sec &amp;amp; config&lt;/div&gt;&lt;div&gt;services&lt;/div&gt;&lt;div&gt;volumnes&lt;/div&gt;&lt;div&gt;etc&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="90" x="-550" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;direction:ltr;border-width:100%&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;direction:ltr;margin-top:0in;margin-left:0in;width:4.2298in&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;direction:ltr;margin-top:0in;margin-left:0in;width:4.2298in&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;ul style=&quot;direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in&quot;&gt;&lt;br&gt; &lt;ol type=&quot;1&quot; style=&quot;direction: ltr; unicode-bidi: embed; margin-top: 0in; margin-bottom: 0in; font-family: Calibri; font-size: 11pt;&quot;&gt;&lt;br&gt;  &lt;li value=&quot;1&quot; style=&quot;margin-top:0;margin-bottom:0;vertical-align:middle&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Different yaml&lt;br&gt;      and application per each module.&lt;/span&gt;&lt;/li&gt;  &lt;li style=&quot;margin-top:0;margin-bottom:0;vertical-align:middle&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Hard to install and manage&lt;br&gt;      details&lt;/span&gt;&lt;/li&gt;  &lt;li style=&quot;margin-top:0;margin-bottom:0;vertical-align:middle&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;Multiple authentications&lt;br&gt;      solutions in backend&lt;/span&gt;&lt;/li&gt;  &lt;li style=&quot;margin-top:0;margin-bottom:0;vertical-align:middle&quot;&gt;&lt;span style=&quot;font-size: 11pt;&quot;&gt;No unified UI interface&lt;br&gt;      which reduce user experience.&lt;/span&gt;&lt;/li&gt;&lt;br&gt; &lt;/ol&gt;&lt;br&gt;&lt;/ul&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="330" x="-425" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-20" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="k8s cluster" vertex="1">
+          <mxGeometry height="30" width="60" x="-780" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-21" parent="1" style="whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="180" width="360" x="-820" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-22" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=ing" value="roaming.bssconnects.io" vertex="1">
+          <mxGeometry height="48" width="50" x="-775" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="namespace&lt;div&gt;deployment&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;&lt;b&gt;- auth&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;- logic&lt;/div&gt;&lt;div&gt;-* db&lt;/div&gt;&lt;div&gt;- cache&lt;/div&gt;&lt;div&gt;sec &amp;amp; config&lt;/div&gt;&lt;div&gt;services&lt;/div&gt;&lt;div&gt;volumnes&lt;/div&gt;&lt;div&gt;etc&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="90" x="-660" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="namespace&lt;div&gt;deployment&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;color: rgb(255, 10, 10);&quot;&gt;- auth&lt;/b&gt;&lt;/div&gt;&lt;div&gt;- logic&lt;/div&gt;&lt;div&gt;-* db&lt;/div&gt;&lt;div&gt;- cache&lt;/div&gt;&lt;div&gt;sec &amp;amp; config&lt;/div&gt;&lt;div&gt;services&lt;/div&gt;&lt;div&gt;volumnes&lt;/div&gt;&lt;div&gt;etc&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="90" x="-560" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div style=&quot;direction:ltr;border-width:100%&quot;&gt;unified&lt;span style=&quot;font-family: Calibri; font-size: 11pt; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Unified auth source&lt;br&gt;with all required details.&lt;/span&gt;&lt;/div&gt;&lt;p style=&quot;margin:0in;font-family:Calibri;font-size:11.0pt&quot;&gt;Keyclock auto&lt;br&gt;provision new roles (APIs) if new module installed&lt;/p&gt;&lt;p style=&quot;margin:0in;font-family:Calibri;font-size:11.0pt&quot;&gt;Format to be&amp;nbsp;&lt;span style=&quot;font-size: 11pt; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;moduleNmae-APProle-verb&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0in;font-family:Calibri;font-size:11.0pt&quot;&gt;Roaming-Partner-read&lt;/p&gt;&lt;p style=&quot;margin:0in;font-family:Calibri;font-size:11.0pt&quot;&gt;&lt;span style=&quot;font-size: 11pt; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Part of app config&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0in;font-family:Calibri;font-size:11.0pt&quot;&gt;map&lt;/p&gt;&lt;p style=&quot;margin:0in;font-family:Calibri;font-size:11.0pt&quot;&gt;appPermissions:&amp;nbsp;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="160" width="295" x="-435" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Config" vertex="1">
+          <mxGeometry height="230" width="40" x="250" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="licence" vertex="1">
+          <mxGeometry height="40" width="60" x="300" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Module" vertex="1">
+          <mxGeometry height="40" width="60" x="370" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-29" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="TT" vertex="1">
+          <mxGeometry height="40" width="50" x="440" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-30" parent="1" style="whiteSpace=wrap;html=1;" value="DB" vertex="1">
+          <mxGeometry height="40" width="80" x="650" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-31" parent="1" style="whiteSpace=wrap;html=1;" value="Storage" vertex="1">
+          <mxGeometry height="40" width="80" x="650" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="..ETC" vertex="1">
+          <mxGeometry height="40" width="70" x="500" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="roaming" vertex="1">
+          <mxGeometry height="40" width="270" x="300" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-35" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="interconnect" vertex="1">
+          <mxGeometry height="40" width="270" x="300" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="f8DyO7QYwGPU-CSr5HQC-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="mediation" vertex="1">
+          <mxGeometry height="40" width="270" x="300" y="320" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

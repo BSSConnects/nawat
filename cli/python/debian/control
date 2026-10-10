@@ -11,7 +11,7 @@ Package: nawat-cli
 Architecture: any
 Pre-Depends: dpkg (>= 1.16.1), ${misc:Pre-Depends}
 Depends: ${misc:Depends}, ${shlibs:Depends}, python3
-Description: Nawat command-line interface
+Description: BSSConnects command-line interface
  Command-line tool for interacting with the Nawat platform.
  Ships a bundled virtualenv containing click and requests, so no
  system Python packages are required.
