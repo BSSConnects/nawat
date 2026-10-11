@@ -1,14 +1,17 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="kc2UpIhF4vg7NQ124Vy8">
-    <mxGraphModel dx="1832" dy="1684" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2475" dy="2067" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-3" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
-          <mxGeometry height="345" width="690" x="60" y="50" as="geometry" />
+          <mxGeometry height="345" width="790" x="60" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-7" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="300" width="140" x="690" y="76" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-2" parent="1" style="whiteSpace=wrap;html=1;" value="keycloak" vertex="1">
-          <mxGeometry height="40" width="80" x="650" y="80" as="geometry" />
+          <mxGeometry height="40" width="80" x="720" y="100" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="k8s cluster" vertex="1">
           <mxGeometry height="30" width="60" x="60" y="20" as="geometry" />
@@ -35,7 +38,7 @@
           <mxGeometry height="48" width="50" x="-765" y="90" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="namespace&lt;div&gt;deployment&lt;/div&gt;&lt;div&gt;- auth&lt;/div&gt;&lt;div&gt;- logic&lt;/div&gt;&lt;div&gt;-* db&lt;/div&gt;&lt;div&gt;- cache&lt;/div&gt;&lt;div&gt;sec &amp;amp; config&lt;/div&gt;&lt;div&gt;services&lt;/div&gt;&lt;div&gt;volumnes&lt;/div&gt;&lt;div&gt;etc&lt;/div&gt;" vertex="1">
-          <mxGeometry height="140" width="90" x="-650" y="90" as="geometry" />
+          <mxGeometry height="140" width="90" x="-660" y="90" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="namespace&lt;div&gt;deployment&lt;/div&gt;&lt;div&gt;- auth&lt;/div&gt;&lt;div&gt;- logic&lt;/div&gt;&lt;div&gt;-* db&lt;/div&gt;&lt;div&gt;- cache&lt;/div&gt;&lt;div&gt;sec &amp;amp; config&lt;/div&gt;&lt;div&gt;services&lt;/div&gt;&lt;div&gt;volumnes&lt;/div&gt;&lt;div&gt;etc&lt;/div&gt;" vertex="1">
           <mxGeometry height="140" width="90" x="-550" y="90" as="geometry" />
@@ -74,10 +77,10 @@
           <mxGeometry height="40" width="50" x="440" y="140" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-30" parent="1" style="whiteSpace=wrap;html=1;" value="DB" vertex="1">
-          <mxGeometry height="40" width="80" x="650" y="130" as="geometry" />
+          <mxGeometry height="40" width="80" x="720" y="150" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-31" parent="1" style="whiteSpace=wrap;html=1;" value="Storage" vertex="1">
-          <mxGeometry height="40" width="80" x="650" y="180" as="geometry" />
+          <mxGeometry height="40" width="80" x="720" y="200" as="geometry" />
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="..ETC" vertex="1">
           <mxGeometry height="40" width="70" x="500" y="140" as="geometry" />
@@ -90,6 +93,18 @@
         </mxCell>
         <mxCell id="f8DyO7QYwGPU-CSr5HQC-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="mediation" vertex="1">
           <mxGeometry height="40" width="270" x="300" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-8" parent="1" style="whiteSpace=wrap;html=1;" value="grafana" vertex="1">
+          <mxGeometry height="40" width="80" x="720" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-9" parent="1" style="whiteSpace=wrap;html=1;" value="moitor" vertex="1">
+          <mxGeometry height="40" width="80" x="720" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="BSScoonect server" vertex="1">
+          <mxGeometry height="30" width="60" x="405" y="-90" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="kubectl create bssconnect --module=modulename" vertex="1">
+          <mxGeometry height="30" width="330" x="-40" y="-40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
