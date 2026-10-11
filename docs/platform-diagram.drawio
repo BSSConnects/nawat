@@ -106,6 +106,66 @@
         <mxCell id="Bd6LnBPWoKHC6EJGqsdi-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="kubectl create bssconnect --module=modulename" vertex="1">
           <mxGeometry height="30" width="330" x="-40" y="-40" as="geometry" />
         </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-12" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="345" width="790" x="990" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-13" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="300" width="140" x="1620" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-14" parent="1" style="whiteSpace=wrap;html=1;" value="keycloak" vertex="1">
+          <mxGeometry height="40" width="80" x="1650" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="k8s cluster" vertex="1">
+          <mxGeometry height="30" width="60" x="990" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-16" parent="1" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=ing" value="customer.bssconnects.io" vertex="1">
+          <mxGeometry height="48" width="50" x="1070" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-17" parent="1" style="whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="300" width="390" x="1170" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-18" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=#b85450;fillColor=#f8cecc;align=center;verticalAlign=middle;rounded=0;" value="Bssconnects Aps" vertex="1">
+          <mxGeometry height="30" width="100" x="1170" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" value="Admin-App" vertex="1">
+          <mxGeometry height="40" width="330" x="1180" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Config" vertex="1">
+          <mxGeometry height="230" width="40" x="1180" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="licence" vertex="1">
+          <mxGeometry height="40" width="60" x="1230" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Module" vertex="1">
+          <mxGeometry height="40" width="60" x="1300" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="TT" vertex="1">
+          <mxGeometry height="40" width="50" x="1370" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-24" parent="1" style="whiteSpace=wrap;html=1;" value="DB" vertex="1">
+          <mxGeometry height="40" width="80" x="1650" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-25" parent="1" style="whiteSpace=wrap;html=1;" value="Storage" vertex="1">
+          <mxGeometry height="40" width="80" x="1650" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="..ETC" vertex="1">
+          <mxGeometry height="40" width="70" x="1430" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-27" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;" value="module name&lt;div&gt;/core&lt;/div&gt;&lt;div&gt;/metadata/permssions.json&lt;/div&gt;&lt;div&gt;/mounts/&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="180" x="1270" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-30" parent="1" style="whiteSpace=wrap;html=1;" value="grafana" vertex="1">
+          <mxGeometry height="40" width="80" x="1650" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-31" parent="1" style="whiteSpace=wrap;html=1;" value="moitor" vertex="1">
+          <mxGeometry height="40" width="80" x="1650" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-32" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="application&lt;div&gt;/service1&lt;/div&gt;&lt;div&gt;/service2&lt;/div&gt;&lt;div&gt;/auth&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="130" x="2350" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Bd6LnBPWoKHC6EJGqsdi-33" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="request.service(1).(sdSD)" vertex="1">
+          <mxGeometry height="30" width="60" x="2290" y="160" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
