@@ -24,10 +24,14 @@ operator: ## Pass a target through to the kubebuilder project: make operator T=m
 
 ## ---- CI stage: lint -------------------------------------------------------------------
 
-lint: ## Lint every Go module (golangci-lint)
+lint: ## Lint every Go module (a module's own `make lint` wins; else plain golangci-lint)
 	@for m in $(GO_MODULES); do \
 	  [ -f $$m/go.mod ] || continue; \
-	  echo "==> golangci-lint $$m"; (cd $$m && golangci-lint run ./...) || exit 1; \
+	  if [ -f $$m/Makefile ] && grep -qE '^lint:' $$m/Makefile; then \
+	    echo "==> make -C $$m lint"; $(MAKE) -C $$m lint || exit 1; \
+	  else \
+	    echo "==> golangci-lint $$m"; (cd $$m && golangci-lint run ./...) || exit 1; \
+	  fi; \
 	done
 
 lint-charts: ## helm lint + render every chart under deploy/charts
