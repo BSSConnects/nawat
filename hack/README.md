@@ -12,7 +12,11 @@ install-deps.sh     Istio, Keycloak, Flux, cert-manager, CNPG, kube-prometheus-s
 Tiltfile            live-reload our services into the cluster on save
 licence-sign/       offline tool that signs development licences
 gen-metadata.sh     regenerate example __metadata__.json files
-verify.sh           everything CI runs — run this before opening a PR
+verify.sh           everything CI runs — run this before opening a PR (wraps `make verify`)
+lint-charts.sh      helm lint --strict + render every chart under deploy/charts   (CI: lint)
+validate-schemas.sh JSON Schema metaschema/testdata checks, OpenAPI lint          (CI: contracts)
+check-generated.sh  regenerate artefacts, fail on drift                           (CI: contracts)
+check-secrets.sh    no key/licence files in git, gitleaks over history            (CI: secrets)
 ```
 
 ## Example — `kind-up.sh`

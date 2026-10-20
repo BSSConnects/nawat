@@ -114,6 +114,24 @@ Worth reading once as a team: [Google's code review guide](https://google.github
 
 ---
 
+### CI stages
+
+`.github/workflows/ci.yml` runs on every pull request and on every push to `main`. Each job
+calls one or more root `make` targets and nothing else, so `make verify` (or
+`./hack/verify.sh`) locally is exactly what CI runs.
+
+| Job | Make targets | What it gates |
+|---|---|---|
+| `lint` | `lint`, `lint-charts` | golangci-lint on every Go module; `helm lint --strict` + render on every chart |
+| `test` | `test` | `go test -race` per module; `opa test` on the Rego bundle |
+| `contracts` | `validate-schemas`, `validate`, `check-generated` | schemas validate against their metaschema and their `testdata/`; OpenAPI lint; CLI validates the example module; regenerated artefacts match what is committed |
+| `secrets` | `check-secrets` | no `.pem`/`.key`/`.lic` outside `testdata/`; gitleaks over the full history |
+
+Any red job blocks merge. The pipeline needs no secrets and no cluster: `permissions` is
+read-only and no job is handed a secret, so a compromised dependency in a build cannot reach
+anything. Conformance (`NWT-083`) and `e2e` (`NWT-064`) are added as further jobs later;
+until then the required-check list in §6 should be `lint`, `test`, `contracts`, `secrets`.
+
 ## 4. Issues
 
 ### Labels
@@ -180,7 +198,7 @@ Format: [adr.github.io](https://adr.github.io/). Ours is in `docs/adr/README.md`
 Configure once, at repo creation:
 
 - Require a pull request; no direct pushes, no force-pushes, no deletion.
-- Require status checks: `lint`, `test`, `contracts`, `e2e`.
+- Require status checks: `lint`, `test`, `contracts`, `secrets` — plus `e2e` once NWT-064 adds it.
 - Require branches to be up to date before merging.
 - Require approvals per the table in §3; dismiss stale approvals on new commits.
 - Require CODEOWNERS review.
