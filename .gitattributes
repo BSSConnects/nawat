@@ -1,0 +1,15 @@
+# Shell scripts and Makefiles must stay LF: CI runs them on Linux and CRLF breaks `#!/usr/bin/env bash`.
+*.sh      text eol=lf
+Makefile  text eol=lf
+*.mk      text eol=lf
+*.yaml    text eol=lf
+*.yml     text eol=lf
+*.toml    text eol=lf
+*.go      text eol=lf
+*.json    text eol=lf
+*.rego    text eol=lf
+
+# Binary documents
+*.docx    binary
+*.pptx    binary
+*.drawio  text

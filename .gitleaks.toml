@@ -1,0 +1,14 @@
+# gitleaks configuration. Extends the default rule set; allows the test fixtures that
+# .gitignore deliberately permits (!testdata/**/*.pem) and the licence header template.
+title = "nawat"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Test fixtures and documentation samples"
+paths = [
+  '''(^|/)testdata/''',
+  '''^examples/license-header\.txt$''',
+  '''\.md$''',
+]
